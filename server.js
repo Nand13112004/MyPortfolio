@@ -51,13 +51,21 @@ app.post('/contact', async (req, res) => {
   }
 });
 
-app.get('/messages', async (req, res) => {
+app.post('/send-message', async (req, res) => {
   try {
-    const messages = await Message.find().select('name email message').exec();
-    res.json(messages);
+    const { name, email, message } = req.body;
+
+    if (!name || !email || !message) {
+      return res.status(400).send('All fields are required');
+    }
+
+    const newMessage = new Message({ name, email, message });
+    await newMessage.save();
+
+    res.status(200).send('Message sent successfully');
   } catch (err) {
-    console.error('Error fetching messages:', err);
-    res.status(500).send('Error fetching messages.');
+    console.error('Error saving message:', err);
+    res.status(500).send('Error sending message');
   }
 });
 
