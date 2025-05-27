@@ -7,7 +7,7 @@ const app = express();
 const port = 3000;
 
 // Replace with your MongoDB connection string
-const mongoURI = 'const mongoURI = mongodb+srv://nand13112004:N1a3n1d1%40nand1311@cluster0.oelixeb.mongodb.net/portfolio?retryWrites=true&w=majority&appName=Cluster0';
+const mongoURI = 'mongodb+srv://nand13112004:N1a3n1d1@cluster0.oelixeb.mongodb.net/sample_mflix?retryWrites=true&w=majority&appName=Cluster0';
 
 
 mongoose.connect(mongoURI, {
